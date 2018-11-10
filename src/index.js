@@ -4,18 +4,21 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import createBrowserHistory from 'history/createBrowserHistory'
 import createStore from './Redux'
-import './index.css'
+import { GlobalStyles } from './styles.js'
 import App from './Components/App'
 import * as serviceWorker from './serviceWorker'
 
 const history = createBrowserHistory()
 
 ReactDOM.render(
-  <Provider store={createStore(history)}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>,
+  <React.Fragment>
+    <Provider store={createStore(history)}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </Provider>
+    <GlobalStyles />
+  </React.Fragment>,
   document.getElementById('root')
 )
 
