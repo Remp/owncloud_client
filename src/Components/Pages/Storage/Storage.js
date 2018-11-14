@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
-import { Tool } from './Blocks'
+import _ from 'lodash'
+import { Tool, File } from './Blocks'
 import {
   Container,
   Header,
@@ -9,10 +10,46 @@ import {
   ButtonsWrapper,
   Path,
   Toolbar,
-  ToolDivider
+  ToolDivider,
+  FilesContainer
 } from './styles'
 
 export default class Storage extends PureComponent {
+  state = {
+    selected: []
+  }
+
+  //following method is only for testing purpose
+  testGenerateFiles = () => {
+    const files = []
+
+    for (let i = 0; i < 10; i++) {
+      const isChecked =
+        _.find(this.state.selected, index => index === i) !== undefined
+
+      files.push(
+        <File
+          checked={isChecked}
+          onClick={e => {
+            if (isChecked) {
+              const selected = this.state.selected.filter(index => index !== i)
+
+              this.setState({ selected })
+            }
+          }}
+          onLongPress={() => {
+            const selected = this.state.selected.slice(0)
+
+            selected.push(i)
+            this.setState({ selected })
+          }}
+        />
+      )
+    }
+
+    return files
+  }
+
   render() {
     return (
       <Container>
@@ -39,6 +76,7 @@ export default class Storage extends PureComponent {
           <ToolDivider />
           <Tool icon="fas fa-trash-alt" title="Delete" />
         </Toolbar>
+        <FilesContainer>{this.testGenerateFiles()}</FilesContainer>
       </Container>
     )
   }

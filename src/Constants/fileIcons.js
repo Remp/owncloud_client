@@ -1,0 +1,6 @@
+export const folder = 'fas fa-folder'
+export const pdf = 'fas fa-file-pdf'
+export const word = 'fas fa-file-word'
+export const excel = 'fas fa-file-excel'
+export const js = 'fab fa-js'
+export const file = 'fas fa-file'

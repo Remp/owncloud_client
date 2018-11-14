@@ -70,9 +70,11 @@ export const ToolDivider = styled.span`
 `
 
 export const FilesContainer = styled.div`
-  height: 100% - 80px;
+  height: calc(100% - 80px);
   overflow: scroll;
   background-color: ${colors.almostWhite};
+  display: flex;
+  flex-wrap: wrap;
 
   &::-webkit-scrollbar {
     display: none;
